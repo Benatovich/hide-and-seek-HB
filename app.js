@@ -35,26 +35,30 @@ function resetStyles() {
 
 function handleGuess(userGuess, correctSpot) {
     // should reset the styles
-    function resetStyles() {
-        // should remove the face class from all containers
-    }
-
+    // resetStyles();
     // then increment the guesses
-
+    total++;
     // then grab the appropriate container element for the correct guess from the DOM
 
     // then add the face class to that element so that the face shows up
-
+    correctSpot.classList.add('face');
     // then if the user guess is correct, increment the correct guesses
-
+    if (correctSpot === userGuess) {
+        wins++;
+    }
     // update the DOM to show this change to the user (including the losses, not tracked directly in state)
+    winsEl.textContent = wins;
+    lossesEl.textContent = total - wins;
+    totalEl.textContent = total;
 }
 
 
 shedButton.addEventListener('click', () => {
     // should get a random item to call the 'correct spot'
-
+    let correctSpot = `${getRandomItem(hidingPlaces)}-container`;
+    const userGuess = 'shed-container';
     // then use that correct spot to 'handle the guess' using the handleGuess function
+    handleGuess(userGuess, correctSpot);
 });
 
 treeButton.addEventListener('click', () => {
