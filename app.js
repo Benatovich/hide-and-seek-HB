@@ -9,6 +9,7 @@ const boulderContainer = document.getElementById('boulder-container');
 
 const totalEl = document.getElementById('total');
 const winsEl = document.getElementById('wins');
+const lossesEl = document.getElementById('losses');
 
 // initialize state
 const hidingPlaces = [
@@ -25,7 +26,7 @@ function getRandomItem(arr) {
 
     return arr[index];
 }
-
+// console.log(getRandomItem(hidingPlaces));
 function resetStyles() {
     // should remove the face class from all containers
     shedContainer.src = './assets/shed.png';
@@ -35,28 +36,31 @@ function resetStyles() {
 
 function handleGuess(userGuess, correctSpot) {
     // should reset the styles
-    // resetStyles();
+    resetStyles();
     // then increment the guesses
-    total++;
+    totalGuesses++;
     // then grab the appropriate container element for the correct guess from the DOM
-
+    const correctString = document.getElementById(correctSpot);
     // then add the face class to that element so that the face shows up
-    correctSpot.classList.add('face');
+    // correctSpot.classList.add('face');
+
     // then if the user guess is correct, increment the correct guesses
-    if (correctSpot === userGuess) {
-        wins++;
+    if (correctString === userGuess) {
+        correctGuesses++;
     }
     // update the DOM to show this change to the user (including the losses, not tracked directly in state)
-    winsEl.textContent = wins;
-    lossesEl.textContent = total - wins;
-    totalEl.textContent = total;
+    winsEl.textContent = correctGuesses;
+    lossesEl.textContent = totalGuesses - correctGuesses;
+    totalEl.textContent = totalGuesses;
 }
 
 
 shedButton.addEventListener('click', () => {
     // should get a random item to call the 'correct spot'
-    let correctSpot = `${getRandomItem(hidingPlaces)}-container`;
-    const userGuess = 'shed-container';
+    const correctSpot = getRandomItem(hidingPlaces);
+    console.log(correctSpot);
+    const userGuess = 'shed';
+    console.log(userGuess);
     // then use that correct spot to 'handle the guess' using the handleGuess function
     handleGuess(userGuess, correctSpot);
 });
