@@ -9,6 +9,7 @@ const boulderContainer = document.getElementById('boulder-container');
 
 const totalEl = document.getElementById('total');
 const winsEl = document.getElementById('wins');
+const lossesEl = document.getElementById('losses');
 
 // initialize state
 const hidingPlaces = [
@@ -25,39 +26,65 @@ function getRandomItem(arr) {
 
     return arr[index];
 }
+// console.log(getRandomItem(hidingPlaces));
+function resetStyles() {
+    // should remove the face class from all containers
+    // shedContainer.src = './assets/shed.png';
+    // treeContainer.src = './assets/tree.webp';
+    // boulderContainer.src = './assets/boulder.png';
+    shedContainer.classList.remove('face');
+    treeContainer.classList.remove('face');
+    boulderContainer.classList.remove('face');
+
+}
 
 function handleGuess(userGuess, correctSpot) {
     // should reset the styles
-
+    resetStyles();
     // then increment the guesses
-
+    totalGuesses++;
     // then grab the appropriate container element for the correct guess from the DOM
-
+    const correctEl = document.getElementById(`${correctSpot}-container`);
     // then add the face class to that element so that the face shows up
+    correctEl.classList.add('face');
 
     // then if the user guess is correct, increment the correct guesses
-
+    if (correctSpot === userGuess) {
+        correctGuesses++;
+    }
     // update the DOM to show this change to the user (including the losses, not tracked directly in state)
+    winsEl.textContent = correctGuesses;
+    lossesEl.textContent = totalGuesses - correctGuesses;
+    totalEl.textContent = totalGuesses;
 }
 
-function resetStyles() {
-    // should remove the face class from all containers
-}
 
 shedButton.addEventListener('click', () => {
     // should get a random item to call the 'correct spot'
-
+    const correctSpot = getRandomItem(hidingPlaces);
+    console.log(correctSpot);
+    const userGuess = 'shed';
+    console.log(userGuess);
     // then use that correct spot to 'handle the guess' using the handleGuess function
+    handleGuess(userGuess, correctSpot);
 });
 
 treeButton.addEventListener('click', () => {
     // should get a random item to call the 'correct spot'
-
+    const correctSpot = getRandomItem(hidingPlaces);
+    console.log(correctSpot);
+    const userGuess = 'tree';
+    console.log(userGuess);
     // then use that correct spot to 'handle the guess' using the handleGuess function
+    handleGuess(userGuess, correctSpot);
 });
 
 boulderButton.addEventListener('click', () => {
-    // should get a random item to call the 'correct spot'
-
-    // then use that correct spot to 'handle the guess' using the handleGuess function
+     // should get a random item to call the 'correct spot'
+    const correctSpot = getRandomItem(hidingPlaces);
+    console.log(correctSpot);
+    const userGuess = 'boulder';
+    console.log(userGuess);
+     // then use that correct spot to 'handle the guess' using the handleGuess function
+    handleGuess(userGuess, correctSpot);
 });
