@@ -81,10 +81,10 @@ treeButton.addEventListener('click', () => {
 
 boulderButton.addEventListener('click', () => {
      // should get a random item to call the 'correct spot'
-     const correctSpot = getRandomItem(hidingPlaces);
-     console.log(correctSpot);
-     const userGuess = 'boulder';
-     console.log(userGuess);
+    const correctSpot = getRandomItem(hidingPlaces);
+    console.log(correctSpot);
+    const userGuess = 'boulder';
+    console.log(userGuess);
      // then use that correct spot to 'handle the guess' using the handleGuess function
-     handleGuess(userGuess, correctSpot);
+    handleGuess(userGuess, correctSpot);
 });
