@@ -29,9 +29,13 @@ function getRandomItem(arr) {
 // console.log(getRandomItem(hidingPlaces));
 function resetStyles() {
     // should remove the face class from all containers
-    shedContainer.src = './assets/shed.png';
-    treeContainer.src = './assets/tree.webp';
-    boulderContainer.src = './assets/boulder.png';
+    // shedContainer.src = './assets/shed.png';
+    // treeContainer.src = './assets/tree.webp';
+    // boulderContainer.src = './assets/boulder.png';
+    shedContainer.classList.remove('face');
+    treeContainer.classList.remove('face');
+    boulderContainer.classList.remove('face');
+
 }
 
 function handleGuess(userGuess, correctSpot) {
@@ -40,9 +44,9 @@ function handleGuess(userGuess, correctSpot) {
     // then increment the guesses
     totalGuesses++;
     // then grab the appropriate container element for the correct guess from the DOM
-    const correctString = document.getElementById(correctSpot);
+    const correctEl = document.getElementById(`${correctSpot}-container`);
     // then add the face class to that element so that the face shows up
-    // correctString.classList.add('face');
+    correctEl.classList.add('face');
 
     // then if the user guess is correct, increment the correct guesses
     if (correctSpot === userGuess) {
